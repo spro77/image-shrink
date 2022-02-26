@@ -16,7 +16,7 @@ const menu = [
           submenu: [
             {
               label: 'About',
-              // click: createAboutWindow,
+              click: createAboutWindow,
             },
           ],
         },
@@ -32,7 +32,7 @@ const menu = [
           submenu: [
             {
               label: 'About',
-              // click: createAboutWindow,
+              click: createAboutWindow,
             },
           ],
         },
@@ -66,9 +66,22 @@ function createMainWindow () {
   mainWindow.loadFile('./app/index.html')
 }
 
+function createAboutWindow() {
+  aboutWindow = new BrowserWindow({
+    title: 'About ImageShrink',
+    width: 300,
+    height: 300,
+    icon: `${__dirname}/assets/icons/Icon_256x256.png`,
+    resizable: false,
+    backgroundColor: 'white',
+  })
+
+  aboutWindow.loadFile('./app/about.html')
+}
+
 app.on('ready', () => {
   createMainWindow()
-  globalShortcut.register('Command+Alt+I', ()=>mainWindow.toggleDevTools())
+  // globalShortcut.register('Command+Alt+I', ()=>mainWindow.toggleDevTools())
 
   const mainMenu = Menu.buildFromTemplate(menu)
   Menu.setApplicationMenu(mainMenu)
